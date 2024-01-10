@@ -1,0 +1,27 @@
+# packages in environment at C:\Users\Raquel Chaves\anaconda3\envs\dtu_mlops_age_prediction:
+#
+# Name                    Version                   Build  Channel
+bzip2                     1.0.8                he774522_0  
+ca-certificates           2023.12.12           haa95532_0  
+filelock                  3.13.1                   pypi_0    pypi
+fsspec                    2023.12.2                pypi_0    pypi
+jinja2                    3.1.2                    pypi_0    pypi
+libffi                    3.4.4                hd77b12b_0  
+markupsafe                2.1.3                    pypi_0    pypi
+mpmath                    1.3.0                    pypi_0    pypi
+networkx                  3.2.1                    pypi_0    pypi
+openssl                   3.0.12               h2bbff1b_0  
+pip                       23.3.1          py311haa95532_0  
+python                    3.11.7               he1021f5_0  
+setuptools                68.2.2          py311haa95532_0  
+sqlite                    3.41.2               h2bbff1b_0  
+sympy                     1.12                     pypi_0    pypi
+tk                        8.6.12               h2bbff1b_0  
+torch                     2.1.2                    pypi_0    pypi
+typing-extensions         4.9.0                    pypi_0    pypi
+tzdata                    2023d                h04d1e81_0  
+vc                        14.2                 h21ff451_1  
+vs2015_runtime            14.27.29016          h5e58377_2  
+wheel                     0.41.2          py311haa95532_0  
+xz                        5.4.5                h8cc25b3_0  
+zlib                      1.2.13               h8cc25b3_0  
