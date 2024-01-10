@@ -1,0 +1,2 @@
+from dtu_mlops_age_prediction.models.model import MyNeuralNet
+from dtu_mlops_age_prediction.predict_model import predict
