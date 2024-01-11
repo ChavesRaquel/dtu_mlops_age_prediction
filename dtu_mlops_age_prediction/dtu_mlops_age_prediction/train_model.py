@@ -15,8 +15,8 @@ def cli():
 
 @click.command()
 @click.option("--lr", default=1e-3, help="learning rate to use for training")
-@click.option("--batch_size", default=256, help="batch size to use for training")
-@click.option("--num_epochs", default=20, help="number of epochs to train for")
+@click.option("--batch_size", default=64, help="batch size to use for training")
+@click.option("--num_epochs", default=5, help="number of epochs to train for")
 def train(lr, batch_size, num_epochs):
     """Train a model on MNIST."""
     print("Training day and night")
@@ -24,7 +24,7 @@ def train(lr, batch_size, num_epochs):
     print(batch_size)
 
 def import_data():
-    path_in = 'data/raw/face_age/'
+    path_in = 'data/processed'
     train_data = torch.load(Path(path_in +'/train_data.pt'))
     train_label = torch.load(Path(path_in + '/train_labels.pt'))
 
