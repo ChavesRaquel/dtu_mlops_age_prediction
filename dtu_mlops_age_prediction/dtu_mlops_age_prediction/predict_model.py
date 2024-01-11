@@ -59,7 +59,7 @@ def import_data():
 # Example usage:
 # Assuming you have a model and a dataloader defined
 
-model = age_predictor_model() # Load the pretrained model state_dictmodel_path = 'path/to/your/model.pt'model.load_state_dict(torch.load(model_path)) # Set the model to evaluation modemodel.eval()
+model = age_predictor_model # Load the pretrained model state_dictmodel_path = 'path/to/your/model.pt'model.load_state_dict(torch.load(model_path)) # Set the model to evaluation modemodel.eval()
 
 model = torch.load('models/model.pt')
 dataloader = import_data()

@@ -41,7 +41,7 @@ def import_data():
     return dataset
 
 batch_size = 128
-num_epochs = 2
+num_epochs = 7
 lr = 1e-3
 
 model = age_predictor_model.to(device)
