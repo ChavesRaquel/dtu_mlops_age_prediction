@@ -2,7 +2,8 @@ import click
 import torch
 from pathlib import Path
 from torch import nn
-from models.model import myawesomemodel
+from models.model import age_predictor_model
+import numpy as np
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -18,22 +19,32 @@ def cli():
 @click.option("--batch_size", default=64, help="batch size to use for training")
 @click.option("--num_epochs", default=5, help="number of epochs to train for")
 def train(lr, batch_size, num_epochs):
-    """Train a model on MNIST."""
-    print("Training day and night")
     print(lr)
     print(batch_size)
 
 def import_data():
     path_in = 'data/processed'
     train_data = torch.load(Path(path_in +'/train_data.pt'))
+    #train_data = np.array(train_data)
     train_label = torch.load(Path(path_in + '/train_labels.pt'))
+    #train_label =  np.array(train_label)
+    label_to_index = {label: idx for idx, label in enumerate(set(train_label))}
+    train_label = [label_to_index[label] for label in train_label]
 
-    return torch.utils.data.TensorDataset(train_data, train_label)
+    # Convert the list of tensors and numerical labels to PyTorch tensors
+    train_data = [torch.tensor(data) for data in train_data]
+    train_label = torch.tensor(train_label)
 
+    # Create a PyTorch TensorDataset
+    dataset = torch.utils.data.TensorDataset(torch.stack(train_data), train_label)
+    return dataset
 
-    
-model = myawesomemodel.to(device)
-train_set, _ = import_data()
+batch_size = 128
+num_epochs = 2
+lr = 1e-3
+
+model = age_predictor_model.to(device)
+train_set = import_data()
 train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)

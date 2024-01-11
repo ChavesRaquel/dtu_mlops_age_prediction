@@ -1,12 +1,19 @@
 from torch import nn
 
-
-myawesomemodel = nn.Sequential(
-    nn.Conv2d(1, 32, 3),  # [B, 1, 28, 28] -> [B, 32, 26, 26]
-    nn.LeakyReLU(),
-    nn.Conv2d(32, 64, 3), # [B, 32, 26, 26] -> [B, 64, 24, 24]
-    nn.LeakyReLU(),
-    nn.MaxPool2d(2),      # [B, 64, 24, 24] -> [B, 64, 12, 12]
-    nn.Flatten(),        # [B, 64, 12, 12] -> [B, 64 * 12 * 12]
-    nn.Linear(64 * 12 * 12, 10),
+age_predictor_model = nn.Sequential(
+    nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+    
+    nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+    
+    nn.Flatten(),
+    
+    nn.Linear(64 * 16 * 16, 128),
+    nn.ReLU(),
+    
+    nn.Linear(128, 90),  # 90 classes for age prediction
+    nn.LogSoftmax(dim=1)    
 )
