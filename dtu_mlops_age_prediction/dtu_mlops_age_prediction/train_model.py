@@ -63,7 +63,7 @@ for epoch in range(num_epochs):
         optimizer.step()
     print(f"Epoch {epoch} Loss {loss}")
 
-torch.save(model, "model.pt")
+torch.save(model, "models/model.pt")
 
 
 
