@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torch.autograd import Variable
-
+import numpy as np
 # Load the model
 model_path = 'models/model.pt'
 model = torch.load(model_path)
@@ -33,7 +33,7 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 # Test the model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 correct_predictions = 0
-
+diferencias = []
 with torch.no_grad():
     for images, labels in test_loader:
         images = images.to(device)
@@ -47,8 +47,10 @@ with torch.no_grad():
         labels = [int(x) if x.isdigit() else 90 for x in labels]
  #       print(predicted)
 #        print(labels)
-        correct_predictions +=  sum(item1 == item2 for item1, item2 in zip(predicted, labels))
+        correct_predictions +=  sum(item1 == item2 for item1, item2 in zip(predicted, labels))    
+        diferencias.append([abs(elemento1 - elemento2) for elemento1, elemento2 in zip(predicted, labels)])
 
 
 accuracy = correct_predictions / len(test_loader.dataset)
 print(f"Accuracy on test data: {accuracy * 100:.2f}%")
+print(f"Mean error: {np.mean([elemento for sublista in diferencias for elemento in sublista]):.2f}")
