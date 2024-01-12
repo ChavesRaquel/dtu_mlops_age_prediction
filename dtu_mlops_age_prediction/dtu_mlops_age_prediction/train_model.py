@@ -49,7 +49,7 @@ def train(cfg):
             optimizer.step()
         print(f"Epoch {epoch} Loss {loss}")
 
-    torch.save(model, "models/model.pt")
+    torch.save(model, hydra.utils.get_original_cwd()+"/models/model.pt")
 
 
 
