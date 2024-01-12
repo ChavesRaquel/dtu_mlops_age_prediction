@@ -8,26 +8,8 @@ import hydra
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-#@click.group()
-def cli():
-    """Command line interface."""
-    pass
-
-"""
-@click.command()
-@click.option("--lr", default=1e-3, help="learning rate to use for training")
-@click.option("--batch_size", default=64, help="batch size to use for training")
-@click.option("--num_epochs", default=5, help="number of epochs to train for")
-"""
-
-"""
-def info(cfg):
-    print(cfg.hyperparameters.learning_rate)
-    print(cfg.hyperparameters.batch_size)
-"""
 def import_data():
-    path_in = 'data/processed'
+    path_in = hydra.utils.get_original_cwd()+'/data/processed'
     train_data = torch.load(Path(path_in +'/train_data.pt'))
     #train_data = np.array(train_data)
     train_label = torch.load(Path(path_in + '/train_labels.pt'))
@@ -44,12 +26,10 @@ def import_data():
     dataset = torch.utils.data.TensorDataset(torch.stack(train_data), train_label)
     return dataset
 
-
-"""batch_size = 128
-num_epochs = 7
-lr = 1e-3"""
-@hydra.main(config_name="config_train.yaml")
+@hydra.main(config_name="config_train.yaml", config_path='.')
 def train(cfg):
+    print("Current Working Directory:", hydra.utils.get_original_cwd())
+    print("Config:", cfg)
     model = age_predictor_model.to(device)
     train_set = import_data()
     train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=cfg.hyperparameters.batch_size)
@@ -69,14 +49,10 @@ def train(cfg):
             optimizer.step()
         print(f"Epoch {epoch} Loss {loss}")
 
-    torch.save(model, "models/model.pt")
-
-
-
-#cli.add_command(train)
+    torch.save(model, hydra.utils.get_original_cwd()+"/models/model.pt")
 
 
 
 if __name__ == "__main__":
     train()
-    #cli()
+
