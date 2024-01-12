@@ -21,12 +21,11 @@ def cli():
 @click.option("--num_epochs", default=5, help="number of epochs to train for")
 """
 
-@hydra.main(config_name="config_train.yaml")
-
+"""
 def info(cfg):
     print(cfg.hyperparameters.learning_rate)
     print(cfg.hyperparameters.batch_size)
-
+"""
 def import_data():
     path_in = 'data/processed'
     train_data = torch.load(Path(path_in +'/train_data.pt'))
@@ -49,6 +48,7 @@ def import_data():
 """batch_size = 128
 num_epochs = 7
 lr = 1e-3"""
+@hydra.main(config_name="config_train.yaml")
 def train(cfg):
     model = age_predictor_model.to(device)
     train_set = import_data()
