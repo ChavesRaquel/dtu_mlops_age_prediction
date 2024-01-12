@@ -44,6 +44,11 @@ clean:
 data:
 	python $(PROJECT_NAME)/data/make_dataset.py
 
+train:
+	python $(PROJECT_NAME)/train_model.py
+
+predict:
+	python $(PROJECT_NAME)/predict_model.py
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
