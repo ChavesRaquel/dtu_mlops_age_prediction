@@ -6,6 +6,8 @@ from models.model import age_predictor_model
 import numpy as np
 import hydra
 
+from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def import_data():
@@ -36,23 +38,27 @@ def train(cfg):
 
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg.hyperparameters.learning_rate)
     loss_fn = nn.CrossEntropyLoss()
-
-    for epoch in range(cfg.hyperparameters.num_epochs):
-        for batch in train_dataloader:
-            optimizer.zero_grad()
-            x, y = batch
-            x = x.to(device)
-            y = y.to(device)
-            y_pred = model(x)
-            loss = loss_fn(y_pred, y)
-            loss.backward()
-            optimizer.step()
-        print(f"Epoch {epoch} Loss {loss}")
+    with profile(activities=[ProfilerActivity.CPU], record_shapes=True, on_trace_ready=tensorboard_trace_handler(hydra.utils.get_original_cwd()+"/log/train_age_model")) as prof:
+    
+        
+        for epoch in range(cfg.hyperparameters.num_epochs):
+            for batch in train_dataloader:
+                
+                optimizer.zero_grad()
+                x, y = batch
+                x = x.to(device)
+                y = y.to(device)
+                y_pred = model(x)
+                loss = loss_fn(y_pred, y)
+                loss.backward()
+                optimizer.step()
+            print(f"Epoch {epoch} Loss {loss}")
 
     torch.save(model, hydra.utils.get_original_cwd()+"/models/model.pt")
-
+    prof.export_chrome_trace(hydra.utils.get_original_cwd()+"/train_trace.json")
 
 
 if __name__ == "__main__":
-    train()
+    
+        train()
 
