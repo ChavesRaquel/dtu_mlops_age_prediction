@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 
 # Load the model
-model_path = 'models/model.pt'
+model_path = 'dtu_mlops_age_prediction/models/model.pt'
 model = torch.load(model_path)
 model.eval()
 
