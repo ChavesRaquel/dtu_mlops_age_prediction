@@ -1,8 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
-import torch.nn.functional as F
 import torchvision.transforms as transforms
-from torch.autograd import Variable
 
 # Load the model
 model_path = 'dtu_mlops_age_prediction/models/model.pt'
