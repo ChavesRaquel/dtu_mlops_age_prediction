@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
-from torchvision import transforms
+
 import torch
 from PIL import Image
 from sklearn.model_selection import train_test_split
-
+from torchvision import transforms
 
 if __name__ == "__main__":
     # Get the data and process it

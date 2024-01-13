@@ -1,8 +1,10 @@
-import torch
 from pathlib import Path
-from torch import nn
-from models.model import age_predictor_model
+
 import hydra
+import torch
+from torch import nn
+
+from models.model import age_predictor_model
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
