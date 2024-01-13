@@ -1,73 +1,54 @@
 import torch
-import torch.nn as nn
 from torch.utils.data import DataLoader
-from models.model import age_predictor_model
-from pathlib import Path
-import torch
-import torch.nn as nn
-from torch.utils.data import DataLoader, TensorDataset
-from pathlib import Path
+import torch.nn.functional as F
+import torchvision.transforms as transforms
+from torch.autograd import Variable
 
-def predict(model: nn.Module, dataloader: DataLoader) -> torch.Tensor:
-    """Run prediction for a given model and dataloader.
-    
-    Args:
-        model: model to use for prediction
-        dataloader: dataloader with batches
-    
-    Returns:
-        Tensor of shape [N, d] where N is the number of samples and d is the output dimension of the model
-    """
-
-    # Set the model to evaluation mode
-    model.eval()
-
-    predictions = []
-
-    # Iterate over batches in the dataloader
-    with torch.no_grad():
-        for batch in dataloader:
-            # Unpack batch into inputs and labels
-            inputs, labels = batch
-
-            # Move data to device if using GPU
-            inputs = inputs.to(device) if torch.cuda.is_available() else inputs
-            labels = labels.to(device) if torch.cuda.is_available() else labels
-
-            # Forward pass
-            outputs = model(inputs)
-
-            # Append predictions
-            predictions.append(outputs)
-
-    # Concatenate predictions from all batches
-    return torch.cat(predictions, dim=0)
-
-def import_data():
-    path_in = 'data/processed'
-    test_data = torch.load(Path(path_in + '/test_data.pt'))
-    test_labels = torch.load(Path(path_in + '/test_labels.pt'))
-
-    # Convert the list of tensors and labels to PyTorch tensors
-    test_data = [torch.tensor(data) for data in test_data]
-    
-    # Convert labels to numerical format (assuming they are not already)
-    test_labels = [label if isinstance(label, (int, float)) else 0 for label in test_labels]
-    test_labels = torch.tensor(test_labels, dtype=torch.long)  # Adjust dtype accordingly
-
-    # Create a PyTorch TensorDataset
-    dataset = TensorDataset(torch.stack(test_data), test_labels)
-    return dataset
-# Example usage:
-# Assuming you have a model and a dataloader defined
-
-model_path = 'models/model.pt'
+# Load the model
+model_path = 'dtu_mlops_age_prediction/models/model.pt'
 model = torch.load(model_path)
+model.eval()
+
+# Load testing data
+data_path = 'data/processed/test_data.pt'
+labels_path = 'data/processed/test_labels.pt'
+
+test_data = torch.load(data_path)
+test_labels = torch.load(labels_path)
+
+# Assuming test_data is a list of image tensors
+# Assuming test_labels is a list of label strings
+
+# Define the transform
+transform = transforms.Compose([
+    transforms.ToPILImage(),
+    transforms.ToTensor(),
+])
+
+# Create a DataLoader for the testing data
+batch_size = 32  # Adjust as needed
+test_dataset = [(transform(img), label) for img, label in zip(test_data, test_labels)]
+test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+# Test the model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
+correct_predictions = 0
 
-dataloader = DataLoader(import_data())
+with torch.no_grad():
+    for images, labels in test_loader:
+        images = images.to(device)
+        labels = labels
 
-# Make predictions
-predictions = predict(model, dataloader)
-print(predictions)
+        outputs = model(images)
+        _, predicted = torch.max(outputs, 1)
+
+
+        predicted = predicted.tolist()
+        labels = [int(x) if x.isdigit() else 90 for x in labels]
+ #       print(predicted)
+#        print(labels)
+        correct_predictions +=  sum(item1 == item2 for item1, item2 in zip(predicted, labels))
+
+
+accuracy = correct_predictions / len(test_loader.dataset)
+print(f"Accuracy on test data: {accuracy * 100:.2f}%")
