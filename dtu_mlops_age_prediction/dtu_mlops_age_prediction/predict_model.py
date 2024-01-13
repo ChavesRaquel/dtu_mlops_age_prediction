@@ -3,13 +3,13 @@ from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
 # Load the model
-model_path = 'dtu_mlops_age_prediction/models/model.pt'
+model_path = "dtu_mlops_age_prediction/models/model.pt"
 model = torch.load(model_path)
 model.eval()
 
 # Load testing data
-data_path = 'data/processed/test_data.pt'
-labels_path = 'data/processed/test_labels.pt'
+data_path = "data/processed/test_data.pt"
+labels_path = "data/processed/test_labels.pt"
 
 test_data = torch.load(data_path)
 test_labels = torch.load(labels_path)
@@ -18,10 +18,12 @@ test_labels = torch.load(labels_path)
 # Assuming test_labels is a list of label strings
 
 # Define the transform
-transform = transforms.Compose([
-    transforms.ToPILImage(),
-    transforms.ToTensor(),
-])
+transform = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        transforms.ToTensor(),
+    ]
+)
 
 # Create a DataLoader for the testing data
 batch_size = 32  # Adjust as needed
@@ -40,12 +42,11 @@ with torch.no_grad():
         outputs = model(images)
         _, predicted = torch.max(outputs, 1)
 
-
         predicted = predicted.tolist()
         labels = [int(x) if x.isdigit() else 90 for x in labels]
- #       print(predicted)
-#        print(labels)
-        correct_predictions +=  sum(item1 == item2 for item1, item2 in zip(predicted, labels))
+        #       print(predicted)
+        #        print(labels)
+        correct_predictions += sum(item1 == item2 for item1, item2 in zip(predicted, labels))
 
 
 accuracy = correct_predictions / len(test_loader.dataset)
