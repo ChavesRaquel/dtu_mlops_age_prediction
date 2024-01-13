@@ -5,8 +5,10 @@ from torch import nn
 from models.model import age_predictor_model
 import numpy as np
 import hydra
-
+import wandb
 from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
+
+wandb.init()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -40,7 +42,8 @@ def train(cfg):
     loss_fn = nn.CrossEntropyLoss()
     with profile(activities=[ProfilerActivity.CPU], record_shapes=True, on_trace_ready=tensorboard_trace_handler(hydra.utils.get_original_cwd()+"/log/train_age_model")) as prof:
     
-        
+        # Generate reconstructions
+        wandb.watch(model, log_freq=100)
         for epoch in range(cfg.hyperparameters.num_epochs):
             for batch in train_dataloader:
                 
