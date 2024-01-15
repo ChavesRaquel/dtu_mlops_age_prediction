@@ -55,7 +55,7 @@ def train(cfg):
             print(f"Epoch {epoch} Loss {loss}")
 
     torch.save(model, hydra.utils.get_original_cwd()+"/models/model.pt")
-    prof.export_chrome_trace(hydra.utils.get_original_cwd()+"/train_trace.json")
+    prof.export_chrome_trace(hydra.utils.get_original_cwd()+"/train_trace.json") #tensorboard --logdir=./log
 
 
 if __name__ == "__main__":
