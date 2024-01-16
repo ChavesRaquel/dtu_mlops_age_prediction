@@ -5,6 +5,7 @@ from torch import nn
 from models.model import age_predictor_model
 import numpy as np
 import hydra
+import wandb
 
 from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 
@@ -32,7 +33,11 @@ def import_data():
 def train(cfg):
     print("Current Working Directory:", hydra.utils.get_original_cwd())
     print("Config:", cfg)
+    wandb.init(project='Age Prediciton Project')
+    
     model = age_predictor_model.to(device)
+    wandb.watch(model, log_freq =100)
+
     train_set = import_data()
     train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=cfg.hyperparameters.batch_size)
 
@@ -53,6 +58,7 @@ def train(cfg):
                 loss.backward()
                 optimizer.step()
             print(f"Epoch {epoch} Loss {loss}")
+            wandb.log({'loss':loss})
 
     torch.save(model, hydra.utils.get_original_cwd()+"/models/model.pt")
     prof.export_chrome_trace(hydra.utils.get_original_cwd()+"/train_trace.json") #tensorboard --logdir=./log
