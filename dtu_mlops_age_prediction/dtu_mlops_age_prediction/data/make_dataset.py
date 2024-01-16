@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 
 if __name__ == '__main__':
     # Get the data and process it
-    path_in = Path('data/raw/face_age/')
+    path_in = Path('data/raw/facial-age/face_age')
     path_out = 'data/processed'
     data = []
     labels = []
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
         #Open images in each folder
         for file in os.listdir(path):
-            image = Image.open(f'data/raw/face_age/{folder}/{file}')
+            image = Image.open(f'data/raw/facial-age/face_age/{folder}/{file}')
             data.append(transformations(image))
 
         #Set age 90+ because there is too little data to go year by year
