@@ -26,7 +26,7 @@ jobs:
         echo "PIP_CACHE_DIR=$(pip cache dir)" >> $GITHUB_ENV
 
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.PIP_CACHE_DIR }}
         key: ${{ runner.os }}-py${{ matrix.python-version }}-pt${{ matrix.pytorch-version }}-pip-${{ hashFiles('**/requirements.txt') }}
