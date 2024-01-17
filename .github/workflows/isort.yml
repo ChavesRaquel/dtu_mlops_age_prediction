@@ -1,10 +1,11 @@
-name: "Run codecheck"
+name: "Run isort"
 
-on: 
+on:
   push:
     branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
+
 
 jobs:
   build:
@@ -17,15 +18,12 @@ jobs:
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
-        python-version: "3.11"
-    - name: Install ruff and mypy
+        python-version: 3.11
+    - name: Install isort
       run: |
         python -m pip install --upgrade pip
-        pip install ruff mypy
-    - name: Run ruff check and format
+        pip install isort
+    - name: Run isort
       run: |
-        ruff check
-        ruff format
-    - name: Run mypy
-      run: |
-        mypy .
+        # organize import statements 
+        isort .
