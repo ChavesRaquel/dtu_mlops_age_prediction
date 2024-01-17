@@ -1,9 +1,8 @@
 import sys
-sys.path.append('./dtu_mlops_age_prediction/models')
 
 import torch
 import pytest
-from model import Age_predictor_timm
+from dtu_mlops_age_prediction.models.model import Age_predictor_timm
 
 @pytest.fixture
 def model():
