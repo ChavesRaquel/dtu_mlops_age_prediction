@@ -77,8 +77,7 @@ def main():
     batch_size = wandb.config.batch_size
     n_epoch = wandb.config.epochs
     
-    wandb.agent(sweep_id, function=train, count=10)
-    #train(learning_rate=lr, batch_size=batch_size, num_epochs=n_epoch)
+    train(learning_rate=lr, batch_size=batch_size, num_epochs=n_epoch)
 
 if __name__ == "__main__":
     main()
