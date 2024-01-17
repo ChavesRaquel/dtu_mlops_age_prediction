@@ -142,8 +142,7 @@ end of the project.
 >
 > Answer: 
 
-39
-
+---Group 39---
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -154,7 +153,7 @@ end of the project.
 >
 > Answer: 
 
-*s230221, s231844, s211980, s222931*
+---*s230221, s231844, s211980, s222931*---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -167,7 +166,8 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+--- We are using the Pytorch Image Models framework (timm), given that this project consists in predicting the ages of people from a face picture, in the form of classifier from 1 to 90+ years old.
+From the available models in this framework, we used resnet18, widely known for image classification and a good base model in order to optimise training for the case. This framework enabled the project with an improved accuracy than the accuracy that could have been obtained from a model from scratch and a higher decrease in the loss parameter. It improved the training process, but such a complex classification task, still has not very good accuracy. ---
 
 ## Coding environment
 
@@ -186,7 +186,7 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+--- Conda was used to create a virtual environment, named dtu_mlops_age_prediction. The first installation and the process of adding new packages to the environment has been done by calling pip. Every required package in the project has been gathered in a requirements.txt file the same way as it was showed in the mlops course, and it is updated every time the packages change. In order for a new member to build the environment to work in the project, the process should be to clone the repository, create a new conda environment, and run the command *make requirements* or *pip install -r requirements.txt* in the main folder of the repository and all the packages and instances should be installed correctly.--- 
 
 ### Question 5
 
@@ -212,7 +212,7 @@ end of the project.
 >
 > Answer:
 
---- question 6 fill here ---
+--- We have applied pep8 to our code. Having a standard codebase maked the code more readable. When code is easier to understand by many people, it gives access to an easier collaboration between people in big groups that code differently and also eases maintenance and debugging, especially in large projects as many lines of code are involved. ---
 
 ## Version control
 
@@ -231,7 +231,8 @@ end of the project.
 >
 > Answer:
 
---- question 7 fill here ---
+--- *Test data:* We test that the label and the images of the dataset have been correclty generated and they have the same length. 
+*Test model:* We test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset has the desired output.---
 
 ### Question 8
 
@@ -261,7 +262,8 @@ end of the project.
 >
 > Answer:
 
---- question 9 fill here ---
+--- Our workflow included branches and pull requests. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main.  ---
+
 
 ### Question 10
 
@@ -311,7 +313,7 @@ end of the project.
 >
 > Answer:
 
---- question 12 fill here ---
+--- We used various things, a config file with hydra, to run different trainings with config_train.yaml, where learning rate, number of epochs and batch size is set. But mainly a config file with wandb sweeper to run many experiments iterating through the same parameters to find the optimal combination of them, these parameters have been delimited in wandb_sweep.yaml . Both files have been set in the config folder  ---
 
 ### Question 13
 
@@ -326,7 +328,7 @@ end of the project.
 >
 > Answer:
 
---- question 13 fill here ---
+--- We combine hydra with wandb, with wandb sweep we can see different combinations of parameters and their output when training a model. From that information, we can edit the config file that hydra uses to get the parameters that we want to have in order to have an experiment with the desired accuracy and loss. With this, we can save a model that has been trained with those parameters using the hydra config file and that model can be imported to pass information through. With this, we ensure that we have a log of all the experiments and their outputs including having the ability to reproduce the model that gave those results adn then work from that ---
 
 ### Question 14
 
@@ -373,7 +375,7 @@ end of the project.
 >
 > Answer:
 
---- question 16 fill here ---
+--- Debugging was done while coding. A lot of problems have appeared during the coding and those bugs were solved while they were appearing. For this code, a single profiling has been used in order to see using tensorboard locally with pytorch profiler, how the different parts of the training affect the computation time in the execution of the code. We have observed the data, but due to time reasons, we couldn't apply debugging methods to improve performance of the project---
 
 ## Working in the cloud
 
@@ -463,7 +465,7 @@ end of the project.
 >
 > Answer:
 
---- question 23 fill here ---
+--- We have not been able to implement monitoring due to appearance of crucial problems and time limitations. Monitoring is important because it enables tracking the performance in a real-time basis, this makes it easier to detect and solve problems when appearing before the problem is too big to handle. Consistency in performance is achieved by an effective monitoring, also, reliability is very important in order to make a successful application, thus longevity. Also some more in depth monitoring can enable further development and an easier scalability of the application, ensuring as well longevity as the application would be updated to the standards of the moment.---
 
 ### Question 24
 
