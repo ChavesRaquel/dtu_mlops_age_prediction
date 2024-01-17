@@ -28,7 +28,7 @@ def import_data():
     dataset = torch.utils.data.TensorDataset(torch.stack(train_data), train_label)
     return dataset
 
-@hydra.main(config_name="config_train.yaml", config_path='/config')
+@hydra.main(config_name="config_train.yaml", config_path='../config')
 def train(cfg):
     print("Current Working Directory:", hydra.utils.get_original_cwd())
     print("Config:", cfg)
