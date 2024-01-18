@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,16 +12,9 @@ authors = [
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.11"
-dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools]
-packages = ["dtu_mlops_age_prediction"]
-
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-
-[tool.setuptools.dynamic.optional-dependencies]
-dev = {file = ['requirements_dev.txt']}
+packages = ["src"]
 
 [tool.ruff]
 line-length = 120
