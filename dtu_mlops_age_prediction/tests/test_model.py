@@ -2,7 +2,7 @@ import sys
 
 import torch
 import pytest
-from dtu_mlops_age_prediction.models.model import Age_predictor_timm
+from src.models.model import Age_predictor_timm
 
 @pytest.fixture
 def model():
