@@ -8,7 +8,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = dtu_mlops_age_prediction
+PROJECT_NAME = src
 PYTHON_VERSION = 3.11
 PYTHON_INTERPRETER = python
 
