@@ -1,9 +1,9 @@
-import click
+#import click
 import torch
 from pathlib import Path
 from torch import nn
 from models.model import age_predictor_model
-import numpy as np
+#import numpy as np
 import hydra
 
 from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler

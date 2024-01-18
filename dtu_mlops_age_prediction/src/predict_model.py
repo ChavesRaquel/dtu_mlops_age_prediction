@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
-import torch.nn.functional as F
+#import torch.nn.functional as F
 import torchvision.transforms as transforms
 import numpy as np
 from PIL import Image

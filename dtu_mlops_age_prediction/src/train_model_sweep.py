@@ -1,21 +1,20 @@
-import click
+#import click
 import torch
 from pathlib import Path
 from torch import nn
 from models.model import age_predictor_model
-import numpy as np
+#import numpy as np
 import wandb
 import os
 import yaml
 
-from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
-
+#from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def import_data(train = True):
     
     path_in = os.getcwd()+'/data/processed'
-    if train==True:
+    if train is True:
         data = torch.load(Path(path_in +'/train_data.pt'))
         label = torch.load(Path(path_in + '/train_labels.pt'))
     else:
@@ -59,6 +58,7 @@ def train(learning_rate, batch_size, num_epochs):
     
     model = age_predictor_model.to(device)
     model.train()
+    
     wandb.watch(model, log_freq =100)
 
     #Importing train set
@@ -109,9 +109,9 @@ def main():
         config = yaml.load(file, Loader=yaml.FullLoader)
     print(config)
     wandb.init(config=config,project="Sweep1")
-    sweep_id = wandb.sweep(sweep=config, project="Sweep1")
+    #sweep_id = wandb.sweep(sweep=config, project="Sweep1")
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    #device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     print("Start Training...")
 

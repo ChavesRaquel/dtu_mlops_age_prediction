@@ -1,5 +1,3 @@
-import os
-
 import torch
 import pytest
 from src.models.model import Age_predictor_timm
