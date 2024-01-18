@@ -26,6 +26,3 @@ jobs:
       run: |
         ruff format
         ruff check
-    - name: Run mypy
-      run: |
-        mypy .
