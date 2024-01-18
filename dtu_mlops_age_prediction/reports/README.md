@@ -374,12 +374,12 @@ The following command should be used to reproduce the experiment once the config
 >
 > Answer:
 
---- figures/wandb_simple.jpg
+--- ![Wandb Screenshot 1](figures/wandb_simple.png)
 In this first image we log the loss of the train, and the accuracy of both the validation and the training. These metrics help us understand better how the model works and, in our case, it can be seen that it doesn't work very well
 
 As it can be seen we only used two experiments in this case. This was mainly because our initiall idea was to setup a wandb sweep to better choose the hyperparameters. We managed to develop the sweep and it works (as it can be seen in the image below) but, as we haven't managed to deploy it on the cloud, it's not viable to execute it fully as it would take to long.
 
-figures/wandb_sweep.jpg
+![Wandb Screenshot 2](figures/wandb_sweep.png)
 ---
 
 ### Question 15
@@ -451,8 +451,9 @@ figures/wandb_sweep.jpg
 >
 > Answer:
 
---- figures/bucket_1.jpg 
-figures/bucket_2.jpg ---
+--- ![Bucket Screenshot 1](figures/bucket_1.jpg)
+![Bucket Screenshot 2](figures/bucket_2.jpg) ---
+
 ### Question 20
 
 > **Upload one image of your GCP container registry, such that we can see the different images that you have stored.**
@@ -460,7 +461,7 @@ figures/bucket_2.jpg ---
 >
 > Answer:
 
---- figures/registry.jpg ---
+--- ![Registry Screenshot](figures/registry.jpg) ---
 
 ### Question 21
 
@@ -469,7 +470,7 @@ figures/bucket_2.jpg ---
 >
 > Answer:
 
---- figures/cloud_build.jpg ---
+--- ![Cloud Build Screenshot](figures/cloud_build.jpg) ---
 
 ### Question 22
 
