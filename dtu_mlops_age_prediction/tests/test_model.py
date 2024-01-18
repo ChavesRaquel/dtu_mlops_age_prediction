@@ -1,4 +1,7 @@
-import sys
+#import sys
+import os
+
+print(os.getcwd())
 
 import torch
 import pytest

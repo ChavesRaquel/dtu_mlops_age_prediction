@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./dtu_mlops_age_prediction/data')
+sys.path.append('./src/data')
 
 from pathlib import Path
 import torch
