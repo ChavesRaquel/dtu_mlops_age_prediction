@@ -1,0 +1,4 @@
+hyperparameters:
+  batch_size: 64
+  learning_rate: 5e-3
+  num_epochs: 3

@@ -57,9 +57,9 @@ def calculate_validation_accuracy(model, val_dataloader):
 @hydra.main(config_name="config_train.yaml", config_path='../config')
 def train(cfg):
     print("Current Working Directory:", hydra.utils.get_original_cwd())
-    learning_rate = cfg.hyperparameters.learning_rate
-    batch_size = cfg.hyperparameters.batch_size
-    num_epochs = cfg.hyperparameters.num_epochs
+    learning_rate = cfg.experiment.hyperparameters.learning_rate
+    batch_size = cfg.experiment.hyperparameters.batch_size
+    num_epochs = cfg.experiment.hyperparameters.num_epochs
 
     wandb.init(project='Logging')
     model = age_predictor_model.to(device)
