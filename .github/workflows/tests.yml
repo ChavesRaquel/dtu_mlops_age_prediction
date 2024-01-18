@@ -26,4 +26,5 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        cd dtu_mlops_age_prediction && pytest -v tests/
+        cd dtu_mlops_age_prediction
+        pytest -v 
