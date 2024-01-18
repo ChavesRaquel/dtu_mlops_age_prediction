@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dtu_mlops_age_prediction"
-version = "0.0.1"
+version = "0.0.2"
 description = "Age prediction model for facial images"
 authors = [
   { name = "Group 39", email = "your@email.com" },
