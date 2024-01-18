@@ -32,5 +32,5 @@ def test_data():
 
     if len(train_data) > 0:
         # Check the shape of the first data point
-        assert train_data[0].shape == torch.Size([3, 200, 200]), "Incorrect shape for train data" #MIRAR CUAL ES LA SHAPE!! 64 * 50 * 50, 128
+        assert train_data[0].shape == torch.Size([3, 200, 200]), "Incorrect shape for train data"
         assert test_data[0].shape == torch.Size([3, 200, 200]), "Incorrect shape for test data"

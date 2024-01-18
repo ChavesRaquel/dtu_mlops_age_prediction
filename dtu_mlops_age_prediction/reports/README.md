@@ -231,7 +231,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- *Test data:* We test that the label and the images of the dataset have been correclty generated and they have the same length. 
+--- *Test data:* We test that the label and the images of the dataset have been correctly generated and they have the same length. 
 *Test model:* We test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset has the desired output.---
 
 ### Question 8
@@ -247,7 +247,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 8 fill here ---
+--- From the coverage report, we extract that the total coverage of the code is 100%, which means that all 57 statements across the analyzed files are covered by tests. However, this code coverage doesn't mean that the code is completely error-free as the tests that we have managed to implement are quite basic. An example of this is the test of the data, where we simply check if the train and test data and labels have been correctly generated. Then, it is more related to the quality of the tests implemented than to their coverage. Some measures that can be taken to improve the quality of the code are to implement other testing practices. ---
 
 ### Question 9
 
@@ -262,7 +262,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- Our workflow included branches and pull requests. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main.  ---
+--- Our workflow included branches  . We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main.  ---
 
 
 ### Question 10
