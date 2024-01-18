@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dtu_mlops_age_prediction"
+name = "src"
 version = "0.0.2"
 description = "Age prediction model for facial images"
 authors = [
