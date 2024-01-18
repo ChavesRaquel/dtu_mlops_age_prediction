@@ -1,0 +1,7 @@
+[core]
+    remote = remote_storage
+['remote "storage"']
+    url = gdrive://1-yfcXGuX0M8hWXWsqWOQ9gPNGtr-i26r
+['remote "remote_storage"']
+    url = gs://dtu_mlops_raw/
+    version_aware = true

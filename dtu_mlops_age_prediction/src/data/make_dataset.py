@@ -21,7 +21,7 @@ if __name__ == '__main__':
     
     #Go through image folders
     for folder in os.listdir(path_in):
-        path = Path(f'data/raw/face_age/{folder}')
+        path = Path(f'data/raw/facial-age/face_age/{folder}')
 
         #Skip non important folders
         if folder == 'face_age':
