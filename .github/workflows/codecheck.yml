@@ -24,8 +24,8 @@ jobs:
         pip install ruff mypy
     - name: Run ruff check and format
       run: |
-        ruff check
         ruff format
+        ruff check
     - name: Run mypy
       run: |
         mypy .
