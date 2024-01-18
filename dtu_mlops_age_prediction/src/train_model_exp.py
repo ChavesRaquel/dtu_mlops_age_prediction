@@ -1,15 +1,10 @@
-#import click
 import torch
 from pathlib import Path
 from torch import nn
 from models.model import age_predictor_model
-#import numpy as np
 import hydra
 import wandb
-import os
-import yaml
 
-#from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def import_data(train = True):
@@ -89,6 +84,7 @@ def train(cfg):
             train_loss = loss_fn(y_pred, y)
             train_loss.backward()
             optimizer.step()
+
         #Log training loss
         wandb.log({'train_loss': train_loss})
 
@@ -98,9 +94,6 @@ def train(cfg):
         #Calculate and log validation accuracy
         val_acc = calculate_validation_accuracy(model, val_dataloader)
         wandb.log({'val_acc': val_acc})
-
-        #Log epoch
-        
 
         print(f"Epoch {epoch} Train Loss {train_loss} Validation Accuracy {val_acc}")
 

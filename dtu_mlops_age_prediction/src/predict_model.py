@@ -1,6 +1,5 @@
 import torch
 from torch.utils.data import DataLoader
-#import torch.nn.functional as F
 import torchvision.transforms as transforms
 import numpy as np
 from PIL import Image
@@ -46,8 +45,6 @@ def traintest():
 
             predicted = predicted.tolist()
             labels = [int(x) if x.isdigit() else 90 for x in labels]
-    #       print(predicted)
-    #        print(labels)
             correct_predictions +=  sum(item1 == item2 for item1, item2 in zip(predicted, labels))    
             diferencias.append([abs(elemento1 - elemento2) for elemento1, elemento2 in zip(predicted, labels)])
 

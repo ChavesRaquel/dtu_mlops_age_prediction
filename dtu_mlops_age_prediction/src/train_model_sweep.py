@@ -1,9 +1,7 @@
-#import click
 import torch
 from pathlib import Path
 from torch import nn
 from models.model import age_predictor_model
-#import numpy as np
 import wandb
 import os
 import yaml
@@ -83,6 +81,7 @@ def train(learning_rate, batch_size, num_epochs):
             train_loss = loss_fn(y_pred, y)
             train_loss.backward()
             optimizer.step()
+
         #Log training loss
         wandb.log({'train_loss': train_loss})
 
@@ -91,10 +90,7 @@ def train(learning_rate, batch_size, num_epochs):
         wandb.log({'train_acc': train_acc})
         #Calculate and log validation accuracy
         val_acc = calculate_validation_accuracy(model, val_dataloader)
-        wandb.log({'val_acc': val_acc})
-
-        #Log epoch
-        
+        wandb.log({'val_acc': val_acc})      
 
         print(f"Epoch {epoch} Train Loss {train_loss} Validation Accuracy {val_acc}")
 
@@ -109,10 +105,7 @@ def main():
         config = yaml.load(file, Loader=yaml.FullLoader)
     print(config)
     wandb.init(config=config,project="Sweep1")
-    #sweep_id = wandb.sweep(sweep=config, project="Sweep1")
 
-    #device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
     print("Start Training...")
 
     # Extract values from config file
