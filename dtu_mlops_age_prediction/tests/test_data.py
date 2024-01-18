@@ -1,10 +1,9 @@
 import sys
-sys.path.append('./src/data')
-
 from pathlib import Path
 import torch
 import pytest
 
+sys.path.append('./src/data')
 
 @pytest.mark.skipif(not Path("./data").exists(), reason="Data directory not found")
 def test_data():

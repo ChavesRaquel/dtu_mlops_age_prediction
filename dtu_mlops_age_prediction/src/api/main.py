@@ -2,7 +2,7 @@ import sys
 from fastapi import FastAPI
 from http import HTTPStatus
 from fastapi import UploadFile, File
-from typing import Optional
+#from typing import Optional
 #from torchvision.transforms import transforms
 from predict_model import predict
 import uvicorn
