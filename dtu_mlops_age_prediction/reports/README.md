@@ -262,7 +262,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- Our workflow included branches  . We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main.  ---
+--- Our workflow included branches. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main. We have not used pull request because we have worked all together physically and we communicated. ---
 
 
 ### Question 10
@@ -278,7 +278,9 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 10 fill here ---
+--- We have followed the necessary steps to implement DVC. Our data has been stored in a remote location, although we encountered a setback in terms of pulling to access the data.  Initially, we integrated DVC with our personal Google Drive to store our data. However, a significant drawback of this approach is that we are required to authenticate each time we attempt to either push or pull the data. Consequently, we opted to used an API provided by GCP instead. We created a bucket through the GCP platform and subsequently migrated our data storage from our Google Drive to this new Google Cloud Storage, ultimately pushing the data to the cloud.
+
+The implementation of version control might be very helpful as it can facilitate a clear understanding of how the data evolves, it can enable all the team members to work on the data simultaneously without encountering conflicts or data loss, it also allows for easy reproduction ensuring that every experiment is conducted with the same data, provides a safety net in the event of data loss or corruption, and permits the tracking of different versions of the data and their corresponding results, thereby enabling to select the optimal outcome. ---
 
 ### Question 11
 
@@ -360,7 +362,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 15 fill here ---
+--- For our project we created an image for each of the files that we created. In other words, one docker images to download the data, one for creating the dataset, one for training the model and finally one to make predictions using the model. To run each of the docker images,  it's simply required to do: 'docker run trainer:latest' for training the model; 'docker run  redicter:latest' for making predictions; 'docker run download:latest' for downloading the data from kaggle and 'docker run dataset:latest' for creating the dataset. ---
 
 ### Question 16
 
@@ -416,8 +418,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 19 fill here ---
-
+--- [this figure](figures/bucket_1.jpg) [this figure](figures/bucket_2.jpg) ---
 ### Question 20
 
 > **Upload one image of your GCP container registry, such that we can see the different images that you have stored.**
@@ -425,7 +426,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 20 fill here ---
+--- [this figure](figures/registry.jpg) ---
 
 ### Question 21
 
@@ -434,7 +435,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 21 fill here ---
+--- [this figure](figures/cloud_build.jpg) ---
 
 ### Question 22
 
@@ -450,7 +451,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 22 fill here ---
+--- The deployment has been done locally, we've used the packages fastapi and uvicorn. In the deployment we pass an image into the model and it outputs the predicted age. The aplication is done via Fastapi and the paramenters are entered via decorators, First a root where the status of the HTTP is displayed and in the predict path, the input and output are given. Uvicorn is run to host it in a localhost. The app is intuitive with buttons. Cloud deployment has not been done given that a correct cloud setup to do it has't been reached. ---
 
 ### Question 23
 
@@ -479,7 +480,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- question 24 fill here ---
+--- s230221 used 0,51$ and the service costing the most was cloud storage. s231844 used..... s211980 used 45$ and the service consting the most was compute engine. s222931 used 5,4$ ---
 
 ## Overall discussion of project
 
