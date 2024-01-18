@@ -87,37 +87,37 @@ end of the project.
 
 ### Week 1
 
-* [ ] Create a git repository
-* [ ] Make sure that all team members have write access to the github repository
-* [ ] Create a dedicated environment for you project to keep track of your packages
-* [ ] Create the initial file structure using cookiecutter
-* [ ] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
-* [ ] Add a model file and a training script and get that running
-* [ ] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
+* [x] Create a git repository
+* [x] Make sure that all team members have write access to the github repository
+* [x] Create a dedicated environment for you project to keep track of your packages
+* [x] Create the initial file structure using cookiecutter
+* [x] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
+* [x] Add a model file and a training script and get that running
+* [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
+* [x] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
-* [ ] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
-* [ ] Write one or multiple configurations files for your experiments
-* [ ] Used Hydra to load the configurations and manage your hyperparameters
-* [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
+* [x] Setup version control for your data or part of your data
+* [x] Construct one or multiple docker files for your code
+* [x] Build the docker files locally and make sure they work as intended
+* [x] Write one or multiple configurations files for your experiments
+* [x] Used Hydra to load the configurations and manage your hyperparameters
+* [x] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
 * [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
-* [ ] Write unit tests related to the data part of your code
-* [ ] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
-* [ ] Get some continuous integration running on the github repository
-* [ ] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
+* [x] Write unit tests related to the data part of your code
+* [x] Write unit tests related to model construction and or model training
+* [x] Calculate the coverage.
+* [x] Get some continuous integration running on the github repository
+* [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [ ] Create a trigger workflow for automatically building your docker images
 * [ ] Get your model training in GCP using either the Engine or Vertex AI
-* [ ] Create a FastAPI application that can do inference using your model
-* [ ] If applicable, consider deploying the model locally using torchserve
+* [x] Create a FastAPI application that can do inference using your model
+* [x] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
 
 ### Week 3
@@ -131,9 +131,9 @@ end of the project.
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [x] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Make sure all group members have a understanding about all parts of the project
+* [x] Uploaded all your code to github
 
 ## Group information
 
@@ -201,7 +201,17 @@ From the available models in this framework, we used resnet18, widely known for 
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+--- Apart from the folders already stated in the cookiecutter structure. We have set up some more:
+- ./dvc: contains a pointer to the remote storage of the data
+- .github: .github/workflows/ contains different workflows
+- config: contains config files to keep track of experiments with different hyperparameters
+- reports: contains the project description and exam
+- tests: contains the unit testing which tests individual parts of your code base.
+
+There are some folders that we haven't used like the ones for visualization or notebooks.
+
+When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We didn't realize it wasn't done properly until very further in the project, when it was too late to fix.
+ ---
 
 ### Question 6
 
@@ -262,7 +272,7 @@ From the available models in this framework, we used resnet18, widely known for 
 >
 > Answer:
 
---- Our workflow included branches. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main. We have not used pull request because we have worked all together physically and we communicated. ---
+--- For our workflow we mainly worked with branches. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main. We have not used pull request because we have worked all together physically and we communicated. ---
 
 
 ### Question 10
@@ -296,7 +306,7 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- question 11 fill here ---
+--- We have organized our  ---
 
 ## Running code and tracking experiments
 
@@ -315,7 +325,17 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- We used various things, a config file with hydra, to run different trainings with config_train.yaml, where learning rate, number of epochs and batch size is set. But mainly a config file with wandb sweeper to run many experiments iterating through the same parameters to find the optimal combination of them, these parameters have been delimited in wandb_sweep.yaml . Both files have been set in the config folder  ---
+--- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
+
+        `|--config
+             |--config_train.yaml
+             |--experiment
+                   |--exp1.yaml
+                   |--exp2.yaml
+        `
+the file ‘config_train.yaml’ points to the experiment that we want to run. That experiment is located in a folder ‘experiment’ contained in the config folder. Each experiment includes the hyperparameters needed to run the script (batch size, learning rate and number of epochs) and a value.
+
+The configuration file is loaded inside our script by using hydra. To run this experiments, the train_model.py file is called from the terminal: python src/train_model.py ---
 
 ### Question 13
 
@@ -330,7 +350,14 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- We combine hydra with wandb, with wandb sweep we can see different combinations of parameters and their output when training a model. From that information, we can edit the config file that hydra uses to get the parameters that we want to have in order to have an experiment with the desired accuracy and loss. With this, we can save a model that has been trained with those parameters using the hydra config file and that model can be imported to pass information through. With this, we ensure that we have a log of all the experiments and their outputs including having the ability to reproduce the model that gave those results adn then work from that ---
+--- As explained in the previous exercise, we implemented config files using Hydra. When someone wants to run an experiment, the following happens:
+- They have to specify the values of the hyperparameters in a .yaml file inside the folder config/experiment
+- They have to load the configuration file (config_train) into the script. This is already implemented in both train scripts that don't use wandb sweep.
+- Run the script.
+
+To reproduce an experiment, one would have to choose or create the .yaml file of the experiment wanted and point it in the config_train.yaml, which is the high-level configuration file. 
+
+The following command should be used to reproduce the experiment once the config file have been set up: python src/train_model.py---
 
 ### Question 14
 
@@ -347,7 +374,13 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- question 14 fill here ---
+--- figures/wandb_simple.jpg
+In this first image we log the loss of the train, and the accuracy of both the validation and the training. These metrics help us understand better how the model works and, in our case, it can be seen that it doesn't work very well
+
+As it can be seen we only used two experiments in this case. This was mainly because our initiall idea was to setup a wandb sweep to better choose the hyperparameters. We managed to develop the sweep and it works (as it can be seen in the image below) but, as we haven't managed to deploy it on the cloud, it's not viable to execute it fully as it would take to long.
+
+figures/wandb_sweep.jpg
+---
 
 ### Question 15
 
@@ -418,7 +451,8 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- [this figure](figures/bucket_1.jpg) [this figure](figures/bucket_2.jpg) ---
+--- figures/bucket_1.jpg 
+figures/bucket_2.jpg ---
 ### Question 20
 
 > **Upload one image of your GCP container registry, such that we can see the different images that you have stored.**
@@ -426,7 +460,7 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- [this figure](figures/registry.jpg) ---
+--- figures/registry.jpg ---
 
 ### Question 21
 
@@ -435,7 +469,7 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- [this figure](figures/cloud_build.jpg) ---
+--- figures/cloud_build.jpg ---
 
 ### Question 22
 
@@ -480,7 +514,7 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- s230221 used 0,51$ and the service costing the most was cloud storage. s231844 used..... s211980 used 45$ and the service consting the most was compute engine. s222931 used 5,4$ ---
+--- s230221 used 0.51$ and the service costing the most was cloud storage. s231844 used 0.56$ s211980 used 4.5$ and the service consting the most was compute engine. s222931 used 5.4$ ---
 
 ## Overall discussion of project
 
