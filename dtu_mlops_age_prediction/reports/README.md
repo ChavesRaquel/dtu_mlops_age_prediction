@@ -456,7 +456,7 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- We tried to deploy images in the VM's unsuccessfully, so we tried to put the whole repository in them. This gave problems of computing memory so we build a more powerful machine, given that our process was using 4.8GB of memory and the less powerful one was a e2-medium-2 with 4GB memory. The one with higher memory of 16GB was a e2-highmem-2. Also, as we were trying to run everything inside the VM, we increased the disk memory as well to up to 100GB. We weren't able to run any container in it, given the problems we had while building the docker images and uploading them. Some of them got access denied when uploading to the cloud and other didn't build properly and gave errors from using WSL. ---
+--- We tried to deploy images in the VM's unsuccessfully, so we tried to put the whole repository in them. This gave problems of computing memory so we build a more powerful machine, given that our process was using 4.8GB of memory and the less powerful one was a e2-medium-2 with 4GB memory. The one with higher memory of 16GB was a e2-highmem-2. Also, as we were trying to run everything inside the VM, we increased the disk memory as well to up to 100GB. We were not able to run any container in it, given the problems we had while building the docker images and uploading them. Some of them got access denied when uploading to the cloud and other didn not build properly and gave errors from using WSL. ---
 
 ### Question 19
 
@@ -500,7 +500,7 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- The deployment has been done locally, for it we have used the packages fastapi and uvicorn. In the deployment we pass an image into the model and it outputs the predicted age. The aplication is done via Fastapi and the paramenters are entered via decorators, First a root where the status of the HTTP is displayed and in the predict path, the input and output are given. Uvicorn is run to host it in a localhost. The app is intuitive with buttons. Cloud deployment has not been done given that a correct cloud setup to do it has't been reached. ---
+--- The deployment has been done locally, for it we have used the packages fastapi and uvicorn. In the deployment we pass an image into the model and it outputs the predicted age. The aplication is done via Fastapi and the paramenters are entered via decorators, First a root where the status of the HTTP is displayed and in the predict path, the input and output are given. Uvicorn is run to host it in a localhost. The app is intuitive with buttons. Cloud deployment has not been done given that a correct cloud setup to do it has not been reached. ---
 
 ### Question 23
 
