@@ -564,7 +564,8 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- question 26 fill here ---
+--- This project has been a great challenge for us. [...]
+Regarding the DVC, one challenge was how to acces the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files)---
 
 ### Question 27
 
