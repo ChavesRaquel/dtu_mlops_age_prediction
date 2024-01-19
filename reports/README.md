@@ -551,7 +551,8 @@ For this code, a single profiling has been used in order to see how the differen
 > Answer:
 
 --- ![Pipeline screenshot](figures/pipeline.png) 
-Initially, we developed our python functions using the PyTorch Image Models framework (timm). Thanks to it, we build our model based on a pre-trained (resnet model) model. We then trained our model with our local machines to check if everything worked and recorded the logs of our experiments with wandb. Once it worked, we cloned our repository into a Virtual Machine in Google Cloud, even though we couldn't use for training due to the problems explained. In addition, we put hour data into dvc which we then used for adding it to a bucket in Google Cloud Platform.
+
+Initially, we developed our python functions using the PyTorch Image Models framework (timm). Thanks to it, we build our model based on a pre-trained (resnet model) model. We then trained our model with our local machines to check if everything worked and recorded the logs of our experiments with wandb. Once it worked, we cloned our repository into a Virtual Machine in Google Cloud, even though we could not use for training due to the problems explained. In addition, we put our data into dvc which we then used for adding it to a bucket in Google Cloud Platform.
 
 Each time we push something to our GitHub repository in the main branch, github actions execute. We implemented three workflows: one that ensures that the tests for the data and the model work and the other two which are related to code quality and styling. Specifically, we implement one that checks that the code complies with pep8 rules and the other one that runs isort.
 
@@ -573,7 +574,7 @@ In color gray, it can be found how the pipeline would have worked if we had mana
 
 --- This project has been a great challenge for us. First of all, the project structure was not ideal for implementing remote storage, which lead to may problems with docker and dvc. 
 
-Also, regarding docker, we have been troubling with docker images creation due to our hardware, given that we had mainly windows, and in our windows laptops, WSL did not work really well, giving constant errors while creating the images. We had one macOs laptop too, but our approach to the docker files was wrong during most part of the project development and when we tried to execute those dockerfiles out of the mac machine, it returned a CPU architecture failure that we didn't know how to solve, for this reason, cloud deployment was impossible for us as we did not get to test most of the dockerfiles we wrote as we could not convert them into images. 
+Also, regarding docker, we have been troubling with docker images creation due to our hardware, given that we had mainly windows, and in our windows laptops, WSL did not work really well, giving constant errors while creating the images. We had one macOs laptop too, but our approach to the docker files was wrong during most part of the project development and when we tried to execute those dockerfiles out of the mac machine, it returned a CPU architecture failure that we didn't know how to solve. For this reason, cloud deployment was impossible for us as we did not get to test most of the dockerfiles we wrote as we could not convert them into images. 
 
 Regarding the DVC, one challenge has been accesing the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files), this happened also with the gsutil package, that each docker that had it could not create an image because of the credentials. 
 
