@@ -529,7 +529,7 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- s230221 used 0.51$ and the service costing the most was cloud storage. s231844 used 0.56$ s211980 used 4.5$ and the service consting the most was compute engine. s222931 used 5.4$ ---
+--- Student s230221 used 1.74$, student s231844 used 0.56$, student s211980 used 4.5$ and student s222931 used 5.4$. The service consting the most was  compute engine as we had the VM's running for a long time. ---
 
 ## Overall discussion of project
 
