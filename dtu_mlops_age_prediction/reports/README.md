@@ -529,7 +529,7 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- Student s230221 used 1.74$, student s231844 used 0.56$, student s211980 used 4.5$ and student s222931 used 5.4$. The service consting the most was  compute engine as we had the VM's running for a long time. ---
+--- Student s230221 used 1.74$, student s231844 used 0.56$, student s211980 used 4.5$ and student s222931 used 6.4$. The service consting the most was compute engine as we had the VM's running for a long time. ---
 
 ## Overall discussion of project
 
@@ -564,8 +564,7 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- This project has been a great challenge for us. [...]
-Regarding the DVC, one challenge was how to acces the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files)---
+--- This project has been a great challenge for us. First of all, the project structure was not ideal for implementing remote storage, which lead to may problems with docker and dvc. Also, regarding docker, we have been troubling with docker images creation due to our hardware, given that we had mainly windows, and in our windows laptops, WSL did not work really well, giving constant errors while creating the images. We had one macOs laptop too, but our approach to the docker files was wrong during most part of the project development and when we tried to execute those dockerfiles out of the mac machine, it returned a CPU architecture failure that we didn't know how to solve, for this reason, cloud deployment was impossible for us as we did not get to test most of the dockerfiles we wrote as we could not convert them into images. Regarding the DVC, one challenge has been accesing the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files), this happened also with the gsutil package, that each docker that had it could not create an image because of the credentials. Even though we had all these problems, we learnt a lot about how a machine learning project works and which is the pipeline that should be followed in a project like this and how should it be executed in the cloud. Regarding the rest of the project, we did not have any major problems in the process.---
 
 ### Question 27
 

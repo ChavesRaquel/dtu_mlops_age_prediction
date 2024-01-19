@@ -6,8 +6,7 @@ Age prediction model for facial images
 
 The directory structure of the project looks like this:
 
-```txt
-
+```txt 
 ├── Makefile             <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md            <- The top-level README for developers using this project.
 ├── data
@@ -30,14 +29,30 @@ The directory structure of the project looks like this:
 │
 ├── reports              <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures          <- Generated graphics and figures to be used in reporting
+│   └── README.md        <- Report of the project
 │
 ├── requirements.txt     <- The requirements file for reproducing the analysis environment
 |
 ├── requirements_dev.txt <- The requirements file for reproducing the analysis environment
 │
 ├── tests                <- Test files
+│   ├── test_data.py     <- Test data integrity
+│   │
+│   └── test_model.py    <- Test model architecture and output
 │
-├── dtu_mlops_age_prediction  <- Source code for use in this project.
+├── config  <- Configuration files directory
+│   │
+│   ├── config_train.yaml      <- Configuration redirecting to experiments
+│   │ 
+│   ├── wandb_sweep.yaml      <- Configuration with the sweep parameters
+│   │
+│   └── experiment             <- Experiment folder
+│       ├── exp1.yaml
+│       └── exp2.yaml
+│
+├── dockerfiles  <- Folder with dockerfiles for creating images of each script execution
+│   
+├── src  <- Source code for use in this project.
 │   │
 │   ├── __init__.py      <- Makes folder a Python module
 │   │
@@ -49,10 +64,20 @@ The directory structure of the project looks like this:
 │   │   ├── __init__.py
 │   │   ├── model.py
 │   │
+│   ├── api    <- Scripts for deployment
+│   │   |
+│   │   └── main.py      <- Script for opening the local model deployment api
+│   │
 │   ├── visualization    <- Scripts to create exploratory and results oriented visualizations
 │   │   ├── __init__.py
 │   │   └── visualize.py
+│   │
 │   ├── train_model.py   <- script for training the model
+│   │
+│   └── train_model_exp.py   <- script for training the model from the experiments configuration
+│   │
+│   └── train_model_sweep.py   <- script for training the model executing a sweep with wandb
+│   │
 │   └── predict_model.py <- script for predicting from a model
 │
 └── LICENSE              <- Open-source license if one is chosen
