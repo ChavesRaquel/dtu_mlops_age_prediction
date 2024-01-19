@@ -551,9 +551,10 @@ For this code, a single profiling has been used in order to see how the differen
 > Answer:
 
 --- ![Pipeline screenshot](figures/pipeline.png) 
-Initially, we developed our python functions using the PyTorch Image Models framework (timm). Thanks to it, we build our model based on a pre-trained (resnet model) model. We then trained our model with our local machines to check if everything worked and recorded the logs of our experiments with wandb. Once it worked, we cloned our repository into a Virtual Machine in Google Cloud, even though we couldn't use for training due to the problems explained. In addition, we put hour data into dvc which we then used for adding it to a bucket in Google Cloud Platform.
 
-Each time we push something to our GitHub repository in the main branch, github actions execute. We implemented three workflows: one that ensures that the tests for the data and the model work and the other two which are related to code quality and styling. Specifically, we implement one that checks that the code complies with pep8 rules and the other one that runs isort.
+Initially, we developed our python functions using the PyTorch Image Models framework (timm). Thanks to it, we build our model based on a pre-trained (resnet model) model. We then trained our model with our local machines to check if everything worked and recorded the logs of our experiments with wandb. Once it worked, we cloned our repository into a Virtual Machine in Google Cloud, even though we could not use it for training due to the problems explained. In addition, we put our data into dvc which we then used for adding it to a bucket in Google Cloud Platform.
+
+Each time we push something to our GitHub repository in the main branch, github actions is executed. We implemented three workflows: one that ensures that the tests for the data and the model work and the other two which are related to code quality and styling. Specifically, we implement one that checks that the code complies with pep8 rules and the other one that runs isort.
 
 When we were happy with the model after performing some experiments with different hyperparameters, we started the deployment of the model. We could just develop the API locally using fastapi and uvicorn. Our initial idea was to deploy the API on the cloud so that the user could request some predictions with the images available.
 
