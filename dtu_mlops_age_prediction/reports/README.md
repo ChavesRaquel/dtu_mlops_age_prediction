@@ -465,8 +465,8 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- ![Bucket Screenshot 1](figures/bucket_1.jpg)
-![Bucket Screenshot 2](figures/bucket_2.jpg) ---
+--- ![Bucket Screenshot 1](figures/bucket_1.png)
+![Bucket Screenshot 2](figures/bucket_2.png) ---
 
 ### Question 20
 
