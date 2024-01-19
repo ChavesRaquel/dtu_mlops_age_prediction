@@ -210,7 +210,7 @@ From the available models in this framework, we used resnet18, widely known for 
 
 There are some folders that we have not used like the ones for visualization or notebooks.
 
-When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We did not realize it was not done properly until very further in the project, when it was too late to fix.---
+When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of that folder. We did not realize it was not done properly until very further in the project, when it was too late to fix.---
 
 ### Question 6
 
@@ -550,7 +550,14 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- question 25 fill here ---
+--- ![Pipeline screenshot](figures/pipeline.png) 
+Initially, we developed our python functions using the PyTorch Image Models framework (timm). Thanks to it, we build our model based on a pre-trained (resnet model) model. We then trained our model with our local machines to check if everything worked and recorded the logs of our experiments with wandb. Once it worked, we cloned our repository into a Virtual Machine in Google Cloud, even though we couldn't use for training due to the problems explained. In addition, we put hour data into dvc which we then used for adding it to a bucket in Google Cloud Platform.
+
+Each time we push something to our GitHub repository in the main branch, github actions execute. We implemented three workflows: one that ensures that the tests for the data and the model work and the other two which are related to code quality and styling. Specifically, we implement one that checks that the code complies with pep8 rules and the other one that runs isort.
+
+When we were happy with the model after performing some experiments with different hyperparameters, we started the deployment of the model. We could just develop the API locally using fastapi and uvicorn. Our initial idea was to deploy the API on the cloud so that the user could request some predictions with the images available.
+
+In color gray, it can be found how the pipeline would have worked if we had managed to use the cloud properly.---
 
 ### Question 26
 
@@ -564,8 +571,13 @@ For this code, a single profiling has been used in order to see how the differen
 >
 > Answer:
 
---- This project has been a great challenge for us. [...]
-Regarding the DVC, one challenge was how to acces the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files)---
+--- This project has been a great challenge for us. First of all, the project structure was not ideal for implementing remote storage, which lead to may problems with docker and dvc. 
+
+Also, regarding docker, we have been troubling with docker images creation due to our hardware, given that we had mainly windows, and in our windows laptops, WSL did not work really well, giving constant errors while creating the images. We had one macOs laptop too, but our approach to the docker files was wrong during most part of the project development and when we tried to execute those dockerfiles out of the mac machine, it returned a CPU architecture failure that we didn't know how to solve, for this reason, cloud deployment was impossible for us as we did not get to test most of the dockerfiles we wrote as we could not convert them into images. 
+
+Regarding the DVC, one challenge has been accesing the images from the dockerfiles once they where pushed to the remote storage as we got an error of authentication which we were not able to solve. Also we encountered some problems when pulling the raw data (png images) but we could solve it by pulling the processed data (.pt files), this happened also with the gsutil package, that each docker that had it could not create an image because of the credentials. 
+
+Even though we had all these problems, we learnt a lot about how a machine learning project works and which is the pipeline that should be followed in a project like this and how should it be executed in the cloud. Regarding the rest of the project, we did not have any major problems in the process.---
 
 ### Question 27
 
