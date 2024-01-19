@@ -208,9 +208,9 @@ From the available models in this framework, we used resnet18, widely known for 
 - reports: contains the project description and exam
 - tests: contains the unit testing which tests individual parts of your code base.
 
-There are some folders that we haven't used like the ones for visualization or notebooks.
+There are some folders that we have not used like the ones for visualization or notebooks.
 
-When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We didn't realize it wasn't done properly until very further in the project, when it was too late to fix.---
+When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We did not realize it was not done properly until very further in the project, when it was too late to fix.---
 
 ### Question 6
 
@@ -241,7 +241,7 @@ When initializing the structure with cookicutter, we believe we did something wr
 > Answer:
 
 --- *Test data:* We test that the label and the images of the dataset have been correctly generated and they have the same length. 
-*Test model:* We test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset has the desired output.---
+*Test model:* We test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset we test that the desired output is obtained.---
 
 ### Question 8
 
@@ -256,7 +256,7 @@ When initializing the structure with cookicutter, we believe we did something wr
 >
 > Answer:
 
---- From the coverage report, we extract that the total coverage of the code is 100%, which means that all 57 statements across the analyzed files are covered by tests. However, this code coverage doesn't mean that the code is completely error-free as the tests that we have managed to implement are quite basic. An example of this is the test of the data, where we simply check if the train and test data and labels have been correctly generated. Then, it is more related to the quality of the tests implemented than to their coverage. Some measures that can be taken to improve the quality of the code are to implement other testing practices. ---
+--- From the coverage report, we extract that the total coverage of the code is 100%, which means that all 57 statements across the analyzed files are covered by tests. However, this code coverage does not mean that the code is completely error-free as the tests that we have managed to implement are quite basic. An example of this is the test of the data, where we simply check if the train and test data and labels have been correctly generated. Then, it is more related to the quality of the tests implemented than to their coverage. Some measures that can be taken to improve the quality of the code are to implement other testing practices. ---
 
 ### Question 9
 
@@ -271,7 +271,7 @@ When initializing the structure with cookicutter, we believe we did something wr
 >
 > Answer:
 
---- For our workflow we mainly worked with branches. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project, for example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main. We have not used pull request because we have worked all together physically and we communicated. ---
+--- For our workflow we mainly worked with branches. We used different branches to work collaboratively in different parts of the project without affecting other parts of the project. For example, one branch was used for the first training stages, and other branch was used to set up the dvc. As most of us worked a bit in every part, the project was set so that each of us worked in different branches everytime but at the same time we could change the parts of the project we were working on. Never at the same time in the same branch. As long as some part worked, we used merge to main. Parts of the project that required previous parts were branched from main once the previous were working and were merged to main. We have not used pull request because we have worked all together physically and with good communication. ---
 
 
 ### Question 10
@@ -305,7 +305,7 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- CI in our project takes a key role as it takes care of the first part of the pipeline that has to do with the code building and testing. We have done this trough unittesting and Github actions.
+--- CI in our project takes a key role as it takes care of the first part of the pipeline that has to do with the code building and testing. We have done this through unittesting and Github actions.
 
 For the unit testing, as explained in question 7, we wrote two test, one for the data and the other for the model. In the test_data.py we test that the label and the images of the dataset have been correctly generated and they have the same length. In the test_model.py, we test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset has the desired output.
 
@@ -315,7 +315,7 @@ We have three different workflows, which are locate inside the .github/workflows
  - isort.yml: runs isort on the repository
  - codecheck.yml: checks the scripts of the repository so that they comply with pep8 rules.
  
- We didn't use caching, but we would have liked to use it in test.yml to make it run faster.
+ We did not use caching, but we would have liked to use it in test.yml to make it run faster.
  An example of a triggered workflow can be seen here: https://github.com/ChavesRaquel/dtu_mlops_age_prediction/actions---
 
 ## Running code and tracking experiments
