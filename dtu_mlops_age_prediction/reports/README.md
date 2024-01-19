@@ -210,8 +210,7 @@ From the available models in this framework, we used resnet18, widely known for 
 
 There are some folders that we haven't used like the ones for visualization or notebooks.
 
-When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We didn't realize it wasn't done properly until very further in the project, when it was too late to fix.
- ---
+When initializing the structure with cookicutter, we believe we did something wrong as it created a folder inside of the repository and then the structure of the machine learning project inside of it. We didn't realize it wasn't done properly until very further in the project, when it was too late to fix.---
 
 ### Question 6
 
@@ -288,9 +287,9 @@ When initializing the structure with cookicutter, we believe we did something wr
 >
 > Answer:
 
---- We have followed the necessary steps to implement DVC. Our data has been stored in a remote location, although we encountered a problem when pulling to access the data.  Initially, we integrated DVC with our personal Google Drive to store our data. However, a significant drawback of this approach is that we are required to authenticate each time we attempt to either push or pull the data. Consequently, we opted to used an API provided by GCP instead. We created a bucket through the GCP platform and subsequently migrated our data storage from our Google Drive to this new Google Cloud Storage, ultimately pushing the data to the cloud.
+--- We have followed the necessary steps to implement DVC. Our data has been stored in a remote location, although we encountered a problem when pulling to access the raw data, so we tried with the processed data and it worked. Initially, we integrated DVC with our personal Google Drive to store our data. However, a significant drawback of this approach is that we are required to authenticate each time we attempt to either push or pull the data. Consequently, we opted to used an API provided by GCP instead. We created a bucket through the GCP platform and subsequently migrated our data storage from our Google Drive to this new Google Cloud Storage, ultimately pushing the data to the cloud.
 
-The implementation of version control might be very helpful as it can facilitate a clear understanding of how the data evolves, it can enable all the team members to work on the data simultaneously without encountering conflicts or data loss, it also allows for easy reproduction ensuring that every experiment is conducted with the same data, provides a safety net in the event of data loss or corruption, and permits the tracking of different versions of the data and their corresponding results, thereby enabling to select the optimal outcome. ---
+The implementation of version control might be very helpful as it can facilitate a clear understanding of how the data evolves, it can enable all the team members to work on the data simultaneously without encountering conflicts or data loss, it also allows for easy reproduction ensuring that every experiment is conducted with the same data, and permits the tracking of different versions of the data and their corresponding results, thereby enabling to select the optimal outcome. ---
 
 ### Question 11
 
@@ -306,7 +305,18 @@ The implementation of version control might be very helpful as it can facilitate
 >
 > Answer:
 
---- We have organized our  ---
+--- CI in our project takes a key role as it takes care of the first part of the pipeline that has to do with the code building and testing. We have done this trough unittesting and Github actions.
+
+For the unit testing, as explained in question 7, we wrote two test, one for the data and the other for the model. In the test_data.py we test that the label and the images of the dataset have been correctly generated and they have the same length. In the test_model.py, we test that the model has the correct architecture, and with an input of a tensor the same size of our images in the dataset has the desired output.
+
+Then, we use the github actions to automatize the testing such that it is done every time we push into the main branch of the repository.
+We have three different workflows, which are locate inside the .github/workflows folder:
+ - tests.yml: run the test for us
+ - isort.yml: runs isort on the repository
+ - codecheck.yml: checks the scripts of the repository so that they comply with pep8 rules.
+ 
+ We didn't use caching, but we would have liked to use it in test.yml to make it run faster.
+ An example of a triggered workflow can be seen here: https://github.com/ChavesRaquel/dtu_mlops_age_prediction/actions---
 
 ## Running code and tracking experiments
 
@@ -378,9 +388,9 @@ The following command should be used to reproduce the experiment once the config
 ![Wandb Screenshot 1](figures/wandb_simple.jpg)
 ![Wandb Screenshot 2](figures/wandb_sweep.jpg)
 
-In this first image we log the loss of the train, and the accuracy of both the validation and the training. These metrics help us understand better how the model works and, in our case, it can be seen that it doesn't work very well
+In the initial image, we have recorded the train loss, as well as the accuracy of both the validation and training processes. These metrics provide valuable insights into the performance of the model. They allow us to see if our model may be overfitting the data by comparing the accuracy obtained in the training with the one obtained in validation. Upon closer examination, it becomes evident that the model's performance is not satisfactory, but that may be because predicting ages is a very difficult task.
 
-As it can be seen we only used two experiments in this case. This was mainly because our initiall idea was to setup a wandb sweep to better choose the hyperparameters. We managed to develop the sweep and it works (as it can be seen in the second image) but, as we haven't managed to deploy it on the cloud, it's not viable to execute it fully as it would take too long.---
+As it can be seen, we have only conducted two experiments. This decision was primarily driven by our intention to employ a wandb sweep for more effectively selecting the hyperparameters (learning rate, batch size and number of epochs). We have successfully developed the sweep, as demonstrated in the second image. However, as we have not managed to deploy it on the cloud, executing the sweep fully locally is not feasible as it would consume a significant amount of time. If we had managed to deploy it we could have study better the performance of the model in each sweep, therefore choosing the hyperparameters that best fit our problem, which may have helped improved the accuracy of said model.---
 
 ### Question 15
 
@@ -395,7 +405,8 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- For our project we created an image for each of the files that we created. In other words, one docker images to download the data, one for creating the dataset, one for training the model and finally one to make predictions using the model. To run each of the docker images,  it's simply required to do: 'docker run trainer:latest' for training the model; 'docker run  redicter:latest' for making predictions; 'docker run download:latest' for downloading the data from kaggle and 'docker run dataset:latest' for creating the dataset. ---
+---For our project we created an image for each of the files that we created. In other words, one docker image to download the data, one for creating the dataset, one for training the model and finally one to make predictions using the model. To run each of the docker images, it's simply required to do: 'docker run trainer:latest' for training the model; 'docker run predicter:latest' for making predictions; 'docker run download:latest' for downloading the data from kaggle and 'docker run dataset:latest' for creating the dataset. Locally, they ran perfectly. However, in the cloud, we did not manage to deploy given that we not able to pull from google services due to authentication problems.
+---
 
 ### Question 16
 
@@ -410,7 +421,9 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- Debugging was done while coding. A lot of problems have appeared during the coding and those bugs were solved while they were appearing. For this code, a single profiling has been used in order to see using tensorboard locally with pytorch profiler, how the different parts of the training affect the computation time in the execution of the code. We have observed the data, but due to time reasons, we couldn't apply debugging methods to improve performance of the project---
+--- We have implement debugging while we were developing each script. A lot of errors have appeared during the coding and those bugs were solved while they were appearing when running the files. 
+For this code, a single profiling has been used in order to see how the different parts of the training affect the computation time in the execution of the code.
+To use it, we implemented tensorboard locally with pytorch profiler inside our train_data.py file. We have observed the data, but due to time reasons, we couldn't apply the profiling results into the code to improve performance of the project.---
 
 ## Working in the cloud
 
@@ -427,7 +440,10 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- question 17 fill here ---
+---We used some services, even though the experimentation didn't go as planned and many things gave errors, we used: 
+- Buckets: for data storage and access from the virtual machine. 
+- Compute engine: The virtual machine provider, where we could set up the system memory and power, supposedly used to run the project remotely. 
+- Container registry: Used to store docker container images and integrate them with the virtual machines.---
 
 ### Question 18
 
@@ -442,7 +458,7 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- question 18 fill here ---
+--- We tried to deploy images in the VM's unsuccessfully, so we tried to put the whole repository in them. This gave problems of computing memory so we build a more powerful machine, given that our process was using 4.8GB of memory and the less powerful one was a e2-medium-2 with 4GB memory. The one with higher memory of 16GB was a e2-highmem-2. Also, as we were trying to run everything inside the VM, we increased the disk memory as well to up to 100GB. We weren't able to run any container in it, given the problems we had while building the docker images and uploading them. Some of them got access denied when uploading to the cloud and other didn't build properly and gave errors from using WSL. ---
 
 ### Question 19
 
@@ -486,7 +502,7 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- The deployment has been done locally, we've used the packages fastapi and uvicorn. In the deployment we pass an image into the model and it outputs the predicted age. The aplication is done via Fastapi and the paramenters are entered via decorators, First a root where the status of the HTTP is displayed and in the predict path, the input and output are given. Uvicorn is run to host it in a localhost. The app is intuitive with buttons. Cloud deployment has not been done given that a correct cloud setup to do it has't been reached. ---
+--- The deployment has been done locally, for it we have used the packages fastapi and uvicorn. In the deployment we pass an image into the model and it outputs the predicted age. The aplication is done via Fastapi and the paramenters are entered via decorators, First a root where the status of the HTTP is displayed and in the predict path, the input and output are given. Uvicorn is run to host it in a localhost. The app is intuitive with buttons. Cloud deployment has not been done given that a correct cloud setup to do it has't been reached. ---
 
 ### Question 23
 
@@ -567,4 +583,10 @@ As it can be seen we only used two experiments in this case. This was mainly bec
 >
 > Answer:
 
---- question 27 fill here ---
+--- The development of the initial repository and the establishment of the folder structure using Cookiecutter were handled by students s231844 and s230221. They also implemented PEP8 in the code and set up continuous integration. Student s230221 took responsibility for implementing DVC as well. s231844 was in charge of developing the logging using wandb.
+
+For ensuring reproducibility, student s211980 focused on developing Docker images and making them functional locally.
+
+In the area of profiling, both the development and model deployment tasks were managed by s222931.
+
+Cloud computing was a collaborative effort within the group, with contributions from all members. However, students s211980 and s222931 played a major role and were primarily responsible for these tasks. ---
