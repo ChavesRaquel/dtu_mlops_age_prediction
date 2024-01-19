@@ -335,7 +335,7 @@ We have three different workflows, which are locate inside the .github/workflows
 >
 > Answer:
 
---- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
+--- We have used Hydra, a tool to write config files to keep track of hyperparameters, with the structure:
 
         `|--config
              |--config_train.yaml
@@ -343,7 +343,7 @@ We have three different workflows, which are locate inside the .github/workflows
                    |--exp1.yaml
                    |--exp2.yaml
         `
-the file ‘config_train.yaml’ points to the experiment that we want to run. That experiment is located in a folder ‘experiment’ contained in the config folder. Each experiment includes the hyperparameters needed to run the script (batch size, learning rate and number of epochs) and a value.
+The file ‘config_train.yaml’ points to the experiment that we want to run. That experiment is located in a folder ‘experiment’ contained in the config folder. Each experiment includes the hyperparameters needed to run the script (batch size, learning rate and number of epochs) and a value.
 
 The configuration file is loaded inside our script by using hydra. To run this experiments, the train_model.py file is called from the terminal: python src/train_model.py ---
 
@@ -361,9 +361,9 @@ The configuration file is loaded inside our script by using hydra. To run this e
 > Answer:
 
 --- As explained in the previous exercise, we implemented config files using Hydra. When someone wants to run an experiment, the following happens:
-- They have to specify the values of the hyperparameters in a .yaml file inside the folder config/experiment
-- They have to load the configuration file (config_train) into the script. This is already implemented in both train scripts that don't use wandb sweep.
-- Run the script.
+- They have to specify the values of the hyperparameters in a .yaml file inside the folder config/experiment.
+- Then, load the configuration file (config_train) into the script. This is already implemented in both train scripts that do not use wandb sweep.
+- Finally, run the script.
 
 To reproduce an experiment, one would have to choose or create the .yaml file of the experiment wanted and point it in the config_train.yaml, which is the high-level configuration file. 
 
@@ -390,7 +390,7 @@ The following command should be used to reproduce the experiment once the config
 
 In the initial image, we have recorded the train loss, as well as the accuracy of both the validation and training processes. These metrics provide valuable insights into the performance of the model. They allow us to see if our model may be overfitting the data by comparing the accuracy obtained in the training with the one obtained in validation. Upon closer examination, it becomes evident that the model's performance is not satisfactory, but that may be because predicting ages is a very difficult task.
 
-As it can be seen, we have only conducted two experiments. This decision was primarily driven by our intention to employ a wandb sweep for more effectively selecting the hyperparameters (learning rate, batch size and number of epochs). We have successfully developed the sweep, as demonstrated in the second image. However, as we have not managed to deploy it on the cloud, executing the sweep fully locally is not feasible as it would consume a significant amount of time. If we had managed to deploy it we could have study better the performance of the model in each sweep, therefore choosing the hyperparameters that best fit our problem, which may have helped improved the accuracy of said model.---
+As it can be seen, we have only conducted two experiments. This decision was primarily driven by our intention to employ a wandb sweep for more effectively selecting the hyperparameters (learning rate, batch size and number of epochs). We have successfully developed the sweep, as demonstrated in the second image. However, as we have not managed to deploy it on the cloud, executing the sweep fully locally is not feasible as it would consume a significant amount of time. If we had managed to deploy it, we could have studied better the performance of the model in each sweep, therefore choosing the hyperparameters that best fit our problem, which may have helped improved the accuracy of said model.---
 
 ### Question 15
 
@@ -405,8 +405,7 @@ As it can be seen, we have only conducted two experiments. This decision was pri
 >
 > Answer:
 
----For our project we created an image for each of the files that we created. In other words, one docker image to download the data, one for creating the dataset, one for training the model and finally one to make predictions using the model. To run each of the docker images, it's simply required to do: 'docker run trainer:latest' for training the model; 'docker run predicter:latest' for making predictions; 'docker run download:latest' for downloading the data from kaggle and 'docker run dataset:latest' for creating the dataset. Locally, they ran perfectly. However, in the cloud, we did not manage to deploy given that we not able to pull from google services due to authentication problems.
----
+--- For our project we created an image for each of the files that we have. In other words, one docker image to download the data, one for creating the dataset, one for training the model and finally one to make predictions using the model. To run each of the docker images, it's simply required to do: 'docker run trainer:latest' for training the model; 'docker run predicter:latest' for making predictions; 'docker run download:latest' for downloading the data from kaggle and 'docker run dataset:latest' for creating the dataset. Locally, they ran perfectly. However, we did not manage to deploy it in the cloud given that we were not able to pull from google services due to authentication problems. ---
 
 ### Question 16
 
@@ -422,8 +421,7 @@ As it can be seen, we have only conducted two experiments. This decision was pri
 > Answer:
 
 --- We have implement debugging while we were developing each script. A lot of errors have appeared during the coding and those bugs were solved while they were appearing when running the files. 
-For this code, a single profiling has been used in order to see how the different parts of the training affect the computation time in the execution of the code.
-To use it, we implemented tensorboard locally with pytorch profiler inside our train_data.py file. We have observed the data, but due to time reasons, we couldn't apply the profiling results into the code to improve performance of the project.---
+For this code, a single profiling has been used in order to see how the different parts of the training affect the computation time in the execution of the code. To use it, we implemented tensorboard locally with pytorch profiler inside our train_data.py file. We have observed the data, but due to time reasons, we could not apply the profiling results into the code in order to improve the performance of the project.---
 
 ## Working in the cloud
 
@@ -440,10 +438,10 @@ To use it, we implemented tensorboard locally with pytorch profiler inside our t
 >
 > Answer:
 
----We used some services, even though the experimentation didn't go as planned and many things gave errors, we used: 
+--- We used some services, even though the experimentation did not go as planned and many things gave errors. We used: 
 - Buckets: for data storage and access from the virtual machine. 
-- Compute engine: The virtual machine provider, where we could set up the system memory and power, supposedly used to run the project remotely. 
-- Container registry: Used to store docker container images and integrate them with the virtual machines.---
+- Compute engine: the virtual machine provider, where we could set up the system memory and power, supposedly used to run the project remotely. 
+- Container registry: used to store docker container images and integrate them with the virtual machines.---
 
 ### Question 18
 
